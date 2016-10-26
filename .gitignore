@@ -1,0 +1,11 @@
+tutorial_heroes/.vscode/
+tutorial_heroes/node_modules/
+*.map
+tutorial_heroes/app/mock-heroes.js
+tutorial_heroes/app/main.js
+tutorial_heroes/app/hero.js
+tutorial_heroes/app/hero-detail.component.js
+tutorial_heroes/app/hero.service.js
+tutorial_heroes/debug.log
+tutorial_heroes/app/app.module.js
+tutorial_heroes/app/app.component.js
