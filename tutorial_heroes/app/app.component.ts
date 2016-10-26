@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 
+import { OnInit } from '@angular/core';
+
 // The (*) prefix to ngFor indicates that the <li> element and its children constitute a master template.
 // The ngFor directive iterates over the heroes array returned by the AppComponent.heroes property and stamps out instances of this template.
 
@@ -11,8 +13,8 @@ import { HeroService } from './hero.service';
 // Notice in the template that the class.selected is surrounded in square brackets ([]).
 // This is the syntax for a PROPERTY BINDING, a binding in which data flows one way from the data source (the expression hero === selectedHero) to a property of class.
 @Component({
-    selector: 'my-app',
-    template: `
+  selector: 'my-app',
+  template: `
         <h1>{{title}}</h1>
         <h2>My Heroes</h2>
         <ul class="heroes">
@@ -22,7 +24,7 @@ import { HeroService } from './hero.service';
         </ul>
         <my-hero-detail [hero]="selectedHero"></my-hero-detail>
         `,
-    styles: [`
+  styles: [`
     .selected {
       background-color: #CFD8DC !important;
       color: white;
@@ -75,19 +77,28 @@ import { HeroService } from './hero.service';
   providers: [HeroService]
 })
 
-export class AppComponent {
-    title = 'Tour of Heroes';
-    //heroes = HEROES;
-    heroes : Hero[];
-    selectedHero: Hero;
+// implements The ngOnInit Lifecycle Hook.
+export class AppComponent implements OnInit {
+  title = 'Tour of Heroes';
+  //heroes = HEROES;
+  heroes: Hero[];
+  selectedHero: Hero;
 
-    // The constructor itself does nothing. It's for Dependency Injection. 
-    // The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site.
-    constructor(private heroService: HeroService) { 
-        this.heroes = this.heroService.getHeroes();
-    }
+  // The constructor itself does nothing. It's for Dependency Injection. 
+  // The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site.
+  constructor(private heroService: HeroService) { }
 
-    onSelect(hero: Hero): void {
-        this.selectedHero = hero;
-    }
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
+
+  getHeroes(): void {
+    this.heroes = this.heroService.getHeroes();
+  }
+
+  // Use this instead of call getHeroes() inside constructor.
+  // Angular calls this method at the appropriate time.
+  ngOnInit(): void {
+    this.getHeroes();
+  }
 }
