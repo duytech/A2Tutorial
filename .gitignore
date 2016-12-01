@@ -10,3 +10,5 @@ tutorial_heroes/debug.log
 tutorial_heroes/app/app.module.js
 tutorial_heroes/app/app.component.js
 tutorial_heroes/npm-debug.log
+tutorial_heroes/app/dashboard.component.js
+tutorial_heroes/app/heroes.component.js
