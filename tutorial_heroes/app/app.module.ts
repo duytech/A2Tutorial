@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroService } from './hero.service';
+import { DashboardComponent } from './dashboard.component';
 
 @NgModule({
   imports: [
@@ -19,16 +20,30 @@ import { HeroService } from './hero.service';
     RouterModule.forRoot([
       {
         // the router matches this route's path to the URL in the browser address bar 
-        path: 'heroes',
+        path: 'dashboard',
         // the component that the router should create when navigating to this route
+        component: DashboardComponent
+      },
+      {
+        path: 'heroes',
         component: HeroesComponent
-      }
+      },
+      {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'detail/:id',
+        component: HeroDetailComponent
+      },
     ])
   ],
   declarations: [
     AppComponent,
     HeroDetailComponent,
-    HeroesComponent
+    HeroesComponent,
+    DashboardComponent
   ],
   providers: [
     HeroService
