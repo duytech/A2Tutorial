@@ -12,3 +12,8 @@ tutorial_heroes/app/app.component.js
 tutorial_heroes/npm-debug.log
 tutorial_heroes/app/dashboard.component.js
 tutorial_heroes/app/heroes.component.js
+tutorial_heroes/app/in-memory-data.service.js
+tutorial_heroes/app/hero-search.service.js
+tutorial_heroes/app/hero-search.component.js
+tutorial_heroes/app/rxjs-extensions.js
+tutorial_heroes/app/app-routing.module.js

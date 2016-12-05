@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpModule }    from '@angular/http';
 import { RouterModule } from '@angular/router';
+import './rxjs-extensions';
 
 // for using ngModel: two way databinding
 import { FormsModule } from '@angular/forms';
@@ -11,43 +12,30 @@ import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroService } from './hero.service';
 import { DashboardComponent } from './dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
+import {HeroSearchComponent} from './hero-search.component';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    // Routes tell the router which views to display when a user clicks a link or pastes a URL into the browser address bar.
-    RouterModule.forRoot([
-      {
-        // the router matches this route's path to the URL in the browser address bar 
-        path: 'dashboard',
-        // the component that the router should create when navigating to this route
-        component: DashboardComponent
-      },
-      {
-        path: 'heroes',
-        component: HeroesComponent
-      },
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'detail/:id',
-        component: HeroDetailComponent
-      },
-    ])
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
     HeroDetailComponent,
     HeroesComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeroSearchComponent
   ],
-  providers: [
-    HeroService
-  ],
+  providers: [HeroService],
+  // the starting component
   bootstrap: [AppComponent]
 })
 
